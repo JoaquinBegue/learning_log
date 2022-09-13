@@ -1,4 +1,3 @@
-from distutils.command.install_egg_info import to_filename
 from django.db import models
 
 class Topic(models.Model):
