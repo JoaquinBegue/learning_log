@@ -11,4 +11,7 @@ urlpatterns = [
 
     # Show all topics.
     path('topics/', views.topics, name="topics"),
+
+    # Show individual topics.
+    path(r'^topics/(?P<topic_id>\d+)/$', views.topic, name='topic'),
 ]
