@@ -14,4 +14,7 @@ urlpatterns = [
 
     # Show individual topics.
     path(r'^topics/(?P<topic_id>\d+)/$', views.topic, name='topic'),
+
+    # Page for adding a new topic.
+    path(r'^new_topic/$', views.new_topic, name='new_topic'),
 ]
