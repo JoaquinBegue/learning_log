@@ -14,7 +14,12 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3>
-          {{ entry.date_added|date:'M d, Y H:i' }}
+          {% if entry.mod %}
+            {{ entry.date_added|date:'M d, Y H:i' }} | Last update: 
+            {{ entry.date_mod|date:'M d, Y H:i' }}
+          {% else %}
+            {{ entry.date_added|date:'M d, Y H:i' }}
+          {% endif %}
           <small>
             <a href="{% url 'learning_logs:edit_entry' entry.id %}">
               edit entry</a>
