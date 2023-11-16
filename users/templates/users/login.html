@@ -1,21 +1,33 @@
 {% extends "learning_logs/base.html" %}
-{% load bootstrap3 %}
-
-{% block header %}
-  <h2>Log in to your account.</h2>
-{% endblock header %}
+{% load bootstrap5 %}
 
 {% block content %}
 
-  <form method="post" action="{% url 'users:login' %}" class="form">
-    {% csrf_token %}
-    {% bootstrap_form form %}
+  <main class="form-signin text-center">
+    <form method="post" action="{% url 'users:login' %}" class="form">
+      {% csrf_token %}
+      
+      <br>
+      <h1 class="h3 mb-2 fw-normal">Please log in</h1>
+      <div class="form-floating">
+        <input type="text" name="username" autocomplete="username"
+        maxlength="150" class="form-control" placeholder="Username"
+        id="id_username">
+        <label for="id_username" style="color:darkgrey">Username</label>
+      </div>
+      <br>
+      <div class="form-floating">
+        <input type="password" name="password" autocomplete="current-password"
+        class="form-control" placeholder="Password" id="id_password">
+        <label for="id_password" style="color:darkgrey">Password</label>
+      </div>
+      <br>
+      {% buttons %}
+        <button name="submit" class="btn btn-primary">LOG IN</button>
+      {% endbuttons %}
     
-    {% buttons %}
-      <button name="submit" class="btn btn-primary">LOG IN</button>
-    {% endbuttons %}
-
-    <input type="hidden" name="next" value="{% url 'learning_logs:index' %}" />
-  </form>
+      <input type="hidden" name="next" value="{% url 'learning_logs:index' %}" />
+    </form>
+  </main>
 
 {% endblock content %}

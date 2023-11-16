@@ -1,21 +1,68 @@
 {% extends "learning_logs/base.html" %}
-{% load bootstrap3 %}
+{% load bootstrap5 %}
 
 {% block header %}
+  <br>
   <h2>Register your account.</h2>
+  <br>
 {% endblock header %}
 
 {% block content %}
 
   <form method="post" action="{% url 'users:register' %}">
     {% csrf_token %}
-    {% bootstrap_form form %}
+    <form method="post" action="/users/register/">
+      <input type="hidden" name="csrfmiddlewaretoken"
+      value="r2hRj9pEJMPLXL1gYyaOxFlkOZLaXQwCgNlnAsxerWCBxX6HjRenSoEWFoBHKbAZ">
+      
+      <div class="mb-3">
+        <input type="text" name="username" maxlength="150"
+        autocapitalize="none" autocomplete="username" autofocus=""
+        class="form-control" placeholder="Username"
+        title="Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
+        required="" id="id_username">
+        <small class="form-text text-muted">
+          Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
+        </small> 
+      </div>
 
-    {% buttons %}
-      <button name="submit" class="btn btn-primary">REGISTER</button>
-    {% endbuttons %}
+      <div class="mb-3">
+        <input type="password" name="password1" autocomplete="new-password" class="form-control" placeholder="Password" title="Your password can’t be too similar to your other personal information.Your password must contain at least 8 characters.Your password can’t be a commonly used password.Your password can’t be entirely numeric." required="" id="id_password1">
+        <small class="form-text text-muted">
+          <ul>
+            <li>
+              Your password can’t be too similar to your other personal information.
+            </li>
+            <li>
+              Your password must contain at least 8 characters.
+            </li>
+            <li>
+              Your password can’t be a commonly used password.
+            </li>
+            <li>
+              Your password can’t be entirely numeric.
+            </li>
+          </ul>
+        </small>  
+      </div>
 
-    <input type="hidden" name="next" value="{% url 'learning_logs:index' %}" />
+      <div class="mb-3">
+        <input type="password" name="password2" autocomplete="new-password"
+        class="form-control" placeholder="Password confirmation"
+        title="Enter the same password as before, for verification."
+        required="" id="id_password2">
+        <small class="form-text text-muted">
+          Enter the same password as before, for verification.
+        </small>  
+      </div>
+      
+      <div class="mb-3">
+        <button name="submit" class="btn btn-primary">REGISTER</button>
+      </div>
+      
+      <input type="hidden" name="next" value="/">
+    </form>
+    <input type="hidden" name="next" value="{% url 'learning_logs:index' %}"/>
   </form>
 
 {% endblock content %}
